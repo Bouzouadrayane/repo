@@ -1,10 +1,12 @@
+name: test pipeline manuel
+
 on:
-    workflow_dispatch:
+  workflow_dispatch: # Déclenchement manuel activé !
 
 jobs:
-    test-manual:
+  test-manual:
+    runs-on: ubuntu-latest # Correction : avec le 't' à la fin
 
-        runs-on: ubuntu-lates
-        
-        steps:
-           - run: echo"deploiement de l'application .....""
+    steps:
+      - name: Lancement du script
+        run: echo "deploiement de l'application ....." # Syntaxe propre avec espace
