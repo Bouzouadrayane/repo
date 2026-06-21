@@ -1,0 +1,19 @@
+name: test pipeline
+
+on:
+  push:
+    branches:
+      - test
+    paths:
+      - "test.py" # Chemin relatif par rapport à la racine du dépôt Git !
+
+jobs:
+  test_workflow:
+    runs-on: ubuntu-latest # Correction de l'orthographe d'Ubuntu
+
+    steps:
+      - name: first step
+        uses: actions/checkout@v7.0.0
+          
+      - name: affichage 
+        run: echo "hello world" # Syntaxe sur une seule ligne propre
