@@ -1,33 +1,19 @@
-name: manual pipeline
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: matrix
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # 💡 Ne pas oublier les ':' ici
 
 jobs:
   job_1:
-    name: Premier Job
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "hello world ${{ github.job }}"
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node_version: [14.x, 15.x]
+        
+    runs-on: ${{ matrix.os }} # 💡 Indenté au même niveau que 'strategy'
 
-  job_2:
-    name: Deuxième Job (Parallèle)
-    runs-on: ubuntu-latest
-    needs: job_1
-    steps:
-      - run: echo "hello world ${{ github.job }}"
-
-  job_3:
-    name: Troisième Job (Parallèle)
-    runs-on: ubuntu-latest
-    needs: job_1
-    steps:
-      - run: echo "hello world ${{ github.job }}"
-  
-  job_4:
-    name: dernier job
-    runs-on: ubuntu-latest
-    needs: [job_2,job_3]
-
-    steps:
-        - run: echo "j'attends que job 2 et 3 se terminent"
+    steps: # 💡 Indenté au même niveau que 'strategy' et 'runs-on'
+      - run: echo "cette version marche tres bien ${{ matrix.node_version }}"
