@@ -1,0 +1,10 @@
+on:
+    workflow_dispatch:
+
+jobs:
+    test-manual:
+
+        runs-on: ubuntu-lates
+        
+        steps:
+           - run: echo"deploiement de l'application .....""
