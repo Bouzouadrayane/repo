@@ -1,7 +1,17 @@
 name: test pipeline manuel
 
 on:
-  workflow_dispatch: # Déclenchement manuel activé !
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Choose environment"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - production
+         # Déclenchement manuel activé !
 
 jobs:
   test-manual:
