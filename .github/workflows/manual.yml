@@ -1,22 +1,14 @@
 name: test pipeline manuel
 
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: "Choose environment"
-        required: true
-        default: "staging"
-        type: choice
-        options:
-          - staging
-          - production
-         # Déclenchement manuel activé !
+  repository_dispatch:
+     types: [incident_report]
+         
 
 jobs:
   test-manual:
-    runs-on: ubuntu-latest # Correction : avec le 't' à la fin
+    runs-on: ubuntu-latest 
 
     steps:
       - name: Lancement du script
-        run: echo "deploiement de l'application sur " ${{ inputs.environment }}
+        run: echo "deploiement de l'application"
