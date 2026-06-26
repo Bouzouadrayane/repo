@@ -1,8 +1,7 @@
 name: gemini gmail
 
 on:
-    push:
-        branches: [main]
+  workflow_dispatch:
 
 jobs:
     job-1:
